@@ -2,12 +2,19 @@
 Result determining
 """
 
+import random
+
 
 def main():
     """Result determining program"""
     score = float(input("Enter score: "))
     result = determine_grade(score)
     print(result)
+
+
+def display_random_score():
+    """Generates a random score between 0 and 100 and prints the result"""
+    print(f"{determine_grade(float(random.randint(0, 100)))}")
 
 
 def determine_grade(score):
