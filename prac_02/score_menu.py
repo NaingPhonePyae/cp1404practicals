@@ -1,3 +1,5 @@
+"""Score menu"""
+
 MAXIMUM_SCORE = 100
 MINIMUM_SCORE = 0
 EXCELLENT_SCORE = 90
@@ -10,6 +12,7 @@ MENU = ("(G)et a valid score\n"
 
 
 def main():
+    """Score menu program"""
     score = int(input("Score: "))
     score = valid_score(score)
     print(MENU)
@@ -31,12 +34,14 @@ def main():
 
 
 def print_stars(score):
+    """print stars according to score"""
     for i in range(score):
         print("*", end="")
     print()
 
 
 def determine_grade(score):
+    """determine grade based on score"""
     if score < MINIMUM_SCORE or score > MAXIMUM_SCORE:
         result = "Invalid score"
     elif score >= EXCELLENT_SCORE:
@@ -49,6 +54,7 @@ def determine_grade(score):
 
 
 def valid_score(score):
+    """Valid the input score"""
     while score not in range(MINIMUM_SCORE, MAXIMUM_SCORE + 1):
         print("Invalid score")
         score = int(input("Score: "))
