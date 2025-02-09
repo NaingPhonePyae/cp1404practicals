@@ -13,14 +13,12 @@ MENU = ("(G)et a valid score\n"
 
 def main():
     """Score menu program"""
-    score = int(input("Score: "))
-    score = valid_score(score)
+    score = get_valid_score(MINIMUM_SCORE, MAXIMUM_SCORE)
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "G":
-            score = int(input("Score: "))
-            score = valid_score(score)
+            score = get_valid_score(MINIMUM_SCORE, MAXIMUM_SCORE)
         elif choice == "P":
             result = determine_grade(score)
             print(result)
@@ -53,9 +51,10 @@ def determine_grade(score):
     return result
 
 
-def valid_score(score):
-    """Valid the input score"""
-    while score not in range(MINIMUM_SCORE, MAXIMUM_SCORE + 1):
+def get_valid_score(low, high):
+    """get valid input score"""
+    score = int(input("Score: "))
+    while score < low or score > high:
         print("Invalid score")
         score = int(input("Score: "))
     return score
