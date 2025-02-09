@@ -11,36 +11,48 @@ MENU = ("(G)et a valid score\n"
 
 def main():
     score = int(input("Score: "))
-    while score not in range(0, 101):
-        print("Invalid score")
-        score = int(input("Score: "))
+    score = valid_score(score)
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "G":
             score = int(input("Score: "))
-            while score not in range(0, 101):
-                print("Invalid score")
-                score = int(input("Score: "))
+            score = valid_score(score)
         elif choice == "P":
-            if score < MINIMUM_SCORE or score > MAXIMUM_SCORE:
-                result = "Invalid score"
-            elif score >= EXCELLENT_SCORE:
-                result = "Excellent"
-            elif score >= PASSABLE_SCORE:
-                result = "Passable"
-            else:
-                result = "Bad"
+            result = determine_grade(score)
             print(result)
         elif choice == "S":
-            for i in range(score):
-                print("*", end="")
-            print()
+            print_stars(score)
         else:
             print("Invalid")
         print(MENU)
         choice = input(">>> ").upper()
     print("Farewell")
+
+
+def print_stars(score):
+    for i in range(score):
+        print("*", end="")
+    print()
+
+
+def determine_grade(score):
+    if score < MINIMUM_SCORE or score > MAXIMUM_SCORE:
+        result = "Invalid score"
+    elif score >= EXCELLENT_SCORE:
+        result = "Excellent"
+    elif score >= PASSABLE_SCORE:
+        result = "Passable"
+    else:
+        result = "Bad"
+    return result
+
+
+def valid_score(score):
+    while score not in range(MINIMUM_SCORE, MAXIMUM_SCORE + 1):
+        print("Invalid score")
+        score = int(input("Score: "))
+    return score
 
 
 main()
