@@ -9,7 +9,6 @@ for line in file
 NAME_FILE = "name.txt"
 NUMBER_FILE = "numbers.txt"
 
-
 # 1. Write code that asks the user for their name, then opens a file called name.txt and writes that name to it.
 name = input("Name: ")
 out_file = open(NAME_FILE, "w")
