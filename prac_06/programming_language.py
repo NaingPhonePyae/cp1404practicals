@@ -5,7 +5,7 @@ Actual time: 22 min
 
 
 class ProgrammingLanguage:
-    """Represent a Car object."""
+    """Represent a ProgrammingLanguage object."""
 
     def __init__(self, name, typing, reflection, year):
         """Create a ProgrammingLanguage"""
