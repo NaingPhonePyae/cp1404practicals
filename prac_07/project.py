@@ -15,10 +15,13 @@ class Project:
 
     def __str__(self):
         """Return string in desired format"""
-        # Organise Pantry, start: 20/07/2022, priority 1, estimate: $25.00, completion: 55%
         return (f"  {self.name}, start: {self.date}, priority {self.priority}, estimate: ${float(self.cost):,.2f}, "
                 f"completion: {self.completion}%")
 
     def __lt__(self, other):
-        """Determine if it is more prioritized"""
+        """Determine if the project is more prioritized"""
         return self.priority < other.priority
+
+    def is_completed(self):
+        """Determine if a project is completed"""
+        return self.completion == 100
