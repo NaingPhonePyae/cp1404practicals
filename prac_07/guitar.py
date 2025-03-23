@@ -18,7 +18,7 @@ class Guitar:
 
     def __str__(self):
         """Return string in desired format"""
-        return f"{self.name:30} ({self.year}) : ${float(self.cost):>11,.2f}"
+        return f"{self.name:30} ({self.year:>4}) : ${float(self.cost):>11,.2f}"
 
     def get_age(self):
         """Return the age of the guitar"""
@@ -31,4 +31,4 @@ class Guitar:
 
     def __lt__(self, other):
         """Determine if the guitar is older based on year"""
-        return self.year < other.year
+        return int(self.year) < int(other.year)
