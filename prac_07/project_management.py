@@ -1,7 +1,7 @@
 """
 Program to manage project
 Expected time: 1 hour
-Actual time:
+Actual time: 2 hours 20 min
 """
 import datetime
 from project import Project
@@ -83,12 +83,15 @@ def add_project(projects):
 
 def filter_by_date(projects):
     """Filter and display projects that start after input date"""
-    date_string = input("Show projects that start after date (dd/mm/yy): ")
-    date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
-    for project in projects:
-        project_date = datetime.datetime.strptime(project.date, "%d/%m/%Y").date()
-        if project_date >= date:
-            print(project)
+    try:
+        date_string = input("Show projects that start after date (dd/mm/yy): ")
+        date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+        for project in projects:
+            project_date = datetime.datetime.strptime(project.date, "%d/%m/%Y").date()
+            if project_date >= date:
+                print(project)
+    except ValueError:
+        print("Invalid value")
 
 
 def display_projects(projects):
@@ -106,18 +109,22 @@ def display_projects(projects):
 
 def process_file(projects, filename=FILENAME, process_type="r", choice="L"):
     """process file according to inputs"""
-    in_file = open(filename, process_type)
-    if choice == "S":
-        for project in projects:
-            in_file.write(f"{project.name}\t{project.date}\t{project.priority}\t{project.cost}\t{project.completion}\n")
-    else:
-        for line in in_file:
-            parts = line.strip().split("	")
-            project = Project(parts[NAME_INDEX], parts[DATE_INDEX], parts[PRIORITY_INDEX], parts[COST_INDEX],
-                              int(parts[COMPLETION_INDEX]))
-            projects.append(project)
-        projects.sort()
-    in_file.close()
+    try:
+        in_file = open(filename, process_type)
+        if choice == "S":
+            for project in projects:
+                in_file.write(
+                    f"{project.name}\t{project.date}\t{project.priority}\t{project.cost}\t{project.completion}\n")
+        else:
+            for line in in_file:
+                parts = line.strip().split("	")
+                project = Project(parts[NAME_INDEX], parts[DATE_INDEX], parts[PRIORITY_INDEX], parts[COST_INDEX],
+                                  int(parts[COMPLETION_INDEX]))
+                projects.append(project)
+            projects.sort()
+        in_file.close()
+    except FileNotFoundError:
+        print("File not found")
 
 
 if __name__ == '__main__':

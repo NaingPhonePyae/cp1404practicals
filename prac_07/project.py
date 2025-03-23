@@ -1,7 +1,7 @@
 """
 Program store project
 Expected time: 1 hour
-Actual time:
+Actual time: 2 hours 20 min
 """
 import datetime
 
